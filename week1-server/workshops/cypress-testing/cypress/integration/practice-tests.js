@@ -35,3 +35,12 @@ it('can navigate pages', () => {
     .type('my-email@test.com');
   cy.get('.query-form').submit();
 });
+
+// Navigate my page
+it('my site', () => {
+  cy.visit('http://localhost:3000');
+  cy.title().should('eq', 'Welcome to my site');
+  cy.visit('http://localhost:3000/about').url().should('include', '/about');
+  cy.title().should('eq', 'About this page');
+  cy.visit('http://localhost:3000/sign-up').url().should('include', '/sign-up');
+});
