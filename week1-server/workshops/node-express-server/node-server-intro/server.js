@@ -41,6 +41,12 @@ server.get('/users/:blah', (request, response) => {
   response.send(`<h1>Hello ${name}</h1>`);
 });
 
+// Missing routes
+
+server.use((request, response) => {
+  response.status(404).send(`<h1>Not found</h1>`);
+});
+
 // Starting the server
 
 const PORT = 3000;
