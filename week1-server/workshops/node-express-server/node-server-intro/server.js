@@ -21,6 +21,19 @@ server.get('/', (request, response) => {
   response.send('hello');
 });
 
+// JSON body
+// HTTP response bodies are always strings, so Express will automatically convert our object to a JSON string for us.
+
+server.get('/json', (request, response) => {
+  response.send({ message: 'Hello' });
+});
+
+// Redirects
+
+server.get('/redirects', (request, response) => {
+  response.redirect('/');
+});
+
 // Starting the server
 
 const PORT = 3000;
