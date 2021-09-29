@@ -10,6 +10,14 @@ const server = express();
 // response: an object representing the response that will eventually be sent
 
 server.get('/', (request, response) => {
+  // Status code
+  // response.status(404);
+
+  // Headers - Express will automatically set some headers describing the response. e.g. content-type, content-length
+  // Use response.set method
+  response.set('x-fake-header', 'my-value');
+  const time = new Date().toLocaleDateString();
+  response.send(`<h1>Hello, it's ${time}</h1>`);
   response.send('hello');
 });
 
