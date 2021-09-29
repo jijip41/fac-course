@@ -9,7 +9,7 @@ const server = express();
 // request: an object representing the incoming request
 // response: an object representing the response that will eventually be sent
 
-server.get('/', logger, (request, response) => {
+server.get('/', (request, response) => {
   // Status code
   // response.status(404);
 
@@ -19,7 +19,19 @@ server.get('/', logger, (request, response) => {
   // response.set('x-fake-header', 'my-value');
   // const time = new Date().toLocaleDateString();
   // response.send(`<h1>Hello, it's ${time}</h1>`);
-  response.send('hello');
+  response.send(`<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+      <title>Document</title>
+    </head>
+    <body>
+      <h1>Hello</h1>
+    </body>
+    </html>`);
 });
 
 // JSON body
@@ -57,14 +69,21 @@ server.get('/users/:blah', (request, response) => {
 //   next();
 // });
 
-server.get('/', (request, response) => {
-  response.send(`<h1>Hello, this is the next handler</h1>`);
-});
+// server.get('/', (request, response) => {
+//   response.send(`<h1>Hello, this is the next handler</h1>`);
+// });
 
 function logger(request, response, next) {
   console.log(request.method + ' ' + request.url);
   next();
 }
+
+// Static files
+// It's common to have some static files that don't change for each request. E.g. CSS, images, HTML pages
+// Express includes a built-in middleware for serving a directory of files: express.static
+// Directory named public is where we keep all the files sent to the client.
+
+server.use(express.static('public'));
 
 // Starting the server
 
