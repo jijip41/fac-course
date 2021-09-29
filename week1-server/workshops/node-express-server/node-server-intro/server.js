@@ -34,6 +34,13 @@ server.get('/redirects', (request, response) => {
   response.redirect('/');
 });
 
+// Dynamic route paths
+
+server.get('/users/:blah', (request, response) => {
+  const name = request.params.blah;
+  response.send(`<h1>Hello ${name}</h1>`);
+});
+
 // Starting the server
 
 const PORT = 3000;
