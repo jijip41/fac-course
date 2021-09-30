@@ -85,6 +85,15 @@ function logger(request, response, next) {
 
 server.use(express.static('public'));
 
+// Post requests
+// Deal with forms submitting user data to the server
+
+const bodyParser = express.urlencoded();
+server.post('/submit', bodyParser, (request, response) => {
+  console.log('posted');
+  response.send('thanks for submitting');
+});
+
 // Starting the server
 
 const PORT = 3000;
