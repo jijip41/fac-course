@@ -88,7 +88,13 @@ server.use(express.static('public'));
 // Post requests
 // Deal with forms submitting user data to the server
 
-const bodyParser = express.urlencoded();
+// Bodies can be large they come in lots of small chunks. -> There's no simple way to just access the body
+// Instead we must use a "body parser" middleware.
+// Express module include these.
+// Request bodies can come in different formats(JSON, form etc), so we must use the right middleware. --> express.urlencoded -: what forms submit by default
+
+const bodyParser = express.urlencoded(); // middleware - will wait untill all the submitted data has been received. Then add a body property to the request object. We can then read this property in our handler
+
 server.post('/submit', bodyParser, (request, response) => {
   console.log('posted');
   response.send('thanks for submitting');
