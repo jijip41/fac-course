@@ -94,6 +94,12 @@ server.post('/submit', bodyParser, (request, response) => {
   response.send('thanks for submitting');
 });
 
+// *** Send a request from the terminal using the curl program
+// $ curl -X POST localhost:3000/submit
+
+// Add data to the curl request with the -d flag
+// $ curl -X POST localhost:3000/submit -d "name=oli"
+
 // Starting the server
 
 const PORT = 3000;
