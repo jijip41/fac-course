@@ -3,6 +3,9 @@ const express = require('express');
 const server = express();
 
 server.get('/', (request, response) => {
+  // Reading a cookie
+  const cookies = request.get('cookie');
+  console.log(cookies);
   response.send('<h1>Hello</h1>');
 });
 
