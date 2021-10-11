@@ -28,7 +28,13 @@ const server = express();
 server.use(cookieParser());
 
 server.get('/', (request, response) => {
-  console.log(request.cookies);
+  const cookies = request.get('cookie');
+
+  console.log(cookies);
+
+  //   console.log(request.cookies); -> same as above
+
+  response.send('<h1>Hello</h1>');
 });
 
 // Setting a cookie with Express
@@ -38,6 +44,13 @@ server.get('/example', (request, response) => {
     maxAge: 1000 * 60,
     sameSite: 'lax',
   });
+  response.redirect('/');
+});
+
+// Removing cookies with Express
+
+server.get('/remove', (request, response) => {
+  response.clearCookie('Hi-Jihye');
   response.redirect('/');
 });
 
