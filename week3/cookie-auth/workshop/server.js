@@ -10,11 +10,23 @@ server.get('/', (request, response) => {
 });
 
 // Setting a cookie
+// server.get('/example', (request, response) => {
+//   response.set(
+//     'set-cookie',
+//     "Hi=Jihye's cookie; HttpOnly; Max-Age=60; SameSite=Lax"
+//   );
+//   response.redirect('/');
+// });
+
+// Cookies with Express
+// Express' response object has a cookie method. - It takes three arguments (name, value, optional object for all the cookie options)
+
 server.get('/example', (request, response) => {
-  response.set(
-    'set-cookie',
-    "Hi=Jihye's cookie; HttpOnly; Max-Age=60; SameSite=Lax"
-  );
+  response.cookie('Hi-Jihye', 'THis is your cookie', {
+    httpOnly: true,
+    maxAge: 1000 * 60,
+    sameSite: 'lax',
+  });
   response.redirect('/');
 });
 
