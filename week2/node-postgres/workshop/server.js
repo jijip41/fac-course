@@ -1,6 +1,7 @@
-const express = require("express");
-const home = require("./routes/home.js");
-const createUser = require("./routes/create-user.js");
+const express = require('express');
+const home = require('./routes/home.js');
+const createUser = require('./routes/create-user.js');
+const createPost = require('./routes/posts.js');
 
 const server = express();
 
@@ -8,9 +9,10 @@ const bodyHandler = express.urlencoded({ extended: false });
 
 server.use(bodyHandler);
 
-server.get("/", home.get);
-server.get("/create-user", createUser.get);
-server.post("/create-user", createUser.post);
+server.get('/', home.get);
+server.get('/create-user', createUser.get);
+server.post('/create-user', createUser.post);
+server.get('/posts', createPost.get);
 
 const PORT = process.env.PORT || 3000;
 

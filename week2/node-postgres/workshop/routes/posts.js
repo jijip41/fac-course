@@ -1,19 +1,25 @@
 const db = require('../database/connection.js');
 
 function get(request, response) {
-  db.query(
-    /*sql*/
-    `SELECT blog_posts.text_content, users.username FROM blog_posts JOIN users ON blog_posts.user_id = users.id;`
-  ).then((result) => {
-    console.log(result);
+  const posts = /*sql*/ `
+  SELECT blog_posts.text_content, users.username
+  FROM blog_posts
+  INNER JOIN users
+  ON blog_posts.user_id = users.id
+  ORDER BY blog_posts.id DESC
+  `;
+
+  db.query(posts).then((result) => {
     const posts = result.rows;
-    const postsList = posts
-      .map(
-        (post) =>
-          `<li>User Name: ${post.username}, Content: ${post.text_content}</li>`
-      )
-      .join('');
-    response.send(`<ul>${postsList}</ul>`);
+    const postList = posts.map((post) => {
+      return /*html*/ `
+      <li>
+      <p>Author: ${post.username}</p>
+      <p>Content: ${post.text_content}</p>
+      </li>
+      `;
+    });
+    response.send(`<ul>${postList.join('')}</ul>`);
   });
 }
 
