@@ -1,6 +1,5 @@
 import dogs from './dogs.js';
 
-console.log(dogs);
 const app = document.querySelector('#app');
 
 const title = document.createElement('h1');
@@ -10,7 +9,14 @@ const ul = document.createElement('ul');
 
 const dogList = dogs.map((dog) => {
   const li = document.createElement('li');
-  li.textContent = dog.name;
+
+  const h2 = document.createElement('h2');
+  h2.textContent = dog.name;
+
+  const image = document.createElement('img');
+  image.src = dog.image;
+
+  li.append(h2, image);
   return li;
 });
 
