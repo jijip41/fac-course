@@ -1,36 +1,7 @@
-function add(a, b) {
-  return a + b;
-}
+import { calculate } from './calculate.js';
 
-function subtract(a, b) {
-  return a - b;
-}
-
-function multiply(a, b) {
-  return a * b;
-}
-
-function divide(a, b) {
-  return a / b;
-}
-
-function calculate(a, b, sign) {
-  switch (sign) {
-    case "+":
-      return add(a, b);
-    case "-":
-      return subtract(a, b);
-    case "*":
-      return multiply(a, b);
-    case "/":
-      return divide(a, b);
-    default:
-      throw new Error(`Sign '${sign}' not supported`);
-  }
-}
-
-const form = document.querySelector("form");
-const output = document.querySelector("output");
+const form = document.querySelector('form');
+const output = document.querySelector('output');
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -42,8 +13,8 @@ function handleSubmit(event) {
     output.textContent = result;
   } catch (error) {
     console.error(error);
-    output.textContent = "Something went wrong";
+    output.textContent = 'Something went wrong';
   }
 }
 
-form.addEventListener("submit", handleSubmit);
+form.addEventListener('submit', handleSubmit);
