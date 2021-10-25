@@ -50,12 +50,18 @@ const app = document.querySelector('#app');
 
 const template = document.querySelector('#homeTemplate');
 const clone = template.content.cloneNode(true);
+const liTemplate = document.querySelector('#listTemplate');
 
 const dogList = dogs.map((dog) => {
-  return `<li><h2>${dog.name}</h2><img src="${dog.image}"></img></li>`;
+  const liClone = liTemplate.content.cloneNode(true);
+
+  liClone.querySelector('h2').append('dog.name');
+  liClone.querySelector('img').src = dog.image;
+  return liClone;
 });
 
-clone.querySelector('.title').textContent = 'DOGS';
-clone.querySelector('.list-container').innerHTML = dogList;
+clone.querySelector('.title').append('DOGS');
+
+clone.querySelector('.list-container').append(...dogList);
 
 app.append(clone);
