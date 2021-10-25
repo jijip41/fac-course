@@ -55,7 +55,7 @@ const liTemplate = document.querySelector('#listTemplate');
 const dogList = dogs.map((dog) => {
   const liClone = liTemplate.content.cloneNode(true);
 
-  liClone.querySelector('h2').append('dog.name');
+  liClone.querySelector('h2').append(dog.name);
   liClone.querySelector('img').src = dog.image;
   return liClone;
 });
