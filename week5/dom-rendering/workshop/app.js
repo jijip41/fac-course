@@ -14,7 +14,12 @@ const dogList = dogs.map((dog) => {
   // const h2 = document.createElement('h2');
   // h2.textContent = dog.name;
 
-  const image = createEl('img', { src: dog.image });
+  const image = createEl('img', {
+    src: dog.image,
+    alt: '',
+    width: 500,
+    height: 300,
+  });
   // const image = document.createElement('img');
   // image.src = dog.image;
 
