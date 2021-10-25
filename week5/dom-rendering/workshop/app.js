@@ -48,20 +48,52 @@ const app = document.querySelector('#app');
 // Challenge3- stretch
 // Template
 
-const template = document.querySelector('#homeTemplate');
-const clone = template.content.cloneNode(true);
-const liTemplate = document.querySelector('#listTemplate');
+// const template = document.querySelector('#homeTemplate');
+// const clone = template.content.cloneNode(true);
+// const liTemplate = document.querySelector('#listTemplate');
+
+// const dogList = dogs.map((dog) => {
+//   const liClone = liTemplate.content.cloneNode(true);
+
+//   liClone.querySelector('h2').append(dog.name);
+//   liClone.querySelector('img').src = dog.image;
+//   return liClone;
+// });
+
+// clone.querySelector('.title').append('DOGS');
+
+// clone.querySelector('.list-container').append(...dogList);
+
+// app.append(clone);
+
+// Defining template in JS
+
+const templateOne = document.createElement('template');
+templateOne.innerHTML = /*html*/ `
+<h1 class="title"></h1>
+<ul>
+
+</ul>
+`;
+const clone = templateOne.content.cloneNode(true);
+
+const templateTwo = document.createElement('template');
+templateTwo.innerHTML = /*html*/ `
+<li>
+<h2 class="name"></h2>
+<img class="img"/>
+</li>
+`;
 
 const dogList = dogs.map((dog) => {
-  const liClone = liTemplate.content.cloneNode(true);
+  const clone = templateTwo.content.cloneNode(true);
 
-  liClone.querySelector('h2').append(dog.name);
-  liClone.querySelector('img').src = dog.image;
-  return liClone;
+  clone.querySelector('h2').append(dog.name);
+  clone.querySelector('img').src = dog.image;
+  return clone;
 });
 
-clone.querySelector('.title').append('DOGS');
-
-clone.querySelector('.list-container').append(...dogList);
+clone.querySelector('.title').textContent = 'DOGS';
+clone.querySelector('ul').append(...dogList);
 
 app.append(clone);
