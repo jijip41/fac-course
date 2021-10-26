@@ -1,5 +1,6 @@
 import React from 'react';
 import DishList from './DishList';
+import PriceFilter from './PriceFilter';
 
 // const categories = [
 //   "all",
@@ -20,33 +21,7 @@ function App() {
       <section className="filters">
         <h1>Burger Place</h1>
         <form>
-          <fieldset>
-            <legend>Price</legend>
-            <label htmlFor="min-price">
-              Min price
-              <input
-                type="range"
-                id="min-price"
-                min="0.5"
-                max="9"
-                step="0.25"
-                value={min}
-                onChange={(e) => setMin(e.target.value)}
-              />
-            </label>
-            <label htmlFor="max-price">
-              Max price
-              <input
-                type="range"
-                id="max-price"
-                min="0.5"
-                max="9"
-                value={max}
-                step="0.25"
-                onChange={(e) => setMax(e.target.value)}
-              />
-            </label>
-          </fieldset>
+          <PriceFilter min={min} max={max} setMin={setMin} setMax={setMax} />
         </form>
       </section>
       <section className="dishes">
