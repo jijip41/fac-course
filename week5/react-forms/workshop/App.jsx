@@ -1,5 +1,5 @@
-import React from "react";
-// import dishes from "../data";
+import React from 'react';
+import dishes from '../data';
 
 // const categories = [
 //   "all",
@@ -22,7 +22,14 @@ function App() {
       <section className="dishes">
         <h2>Dishes</h2>
         <ul className="grid">
-          <li className="card">dishes go here</li>
+          {dishes.map((dish) => (
+            <li className="card">
+              <h2>{dish.name}</h2>
+              <p>{dish.description}</p>
+              <p>£{dish.price.toFixed(2)}</p>
+            </li>
+          ))}
+          )
         </ul>
       </section>
     </main>
