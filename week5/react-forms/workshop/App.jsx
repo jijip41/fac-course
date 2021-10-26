@@ -30,6 +30,7 @@ function App() {
                 min="0.5"
                 max="9"
                 step="0.25"
+                value={min}
                 onChange={(e) => setMin(e.target.value)}
               />
             </label>
@@ -40,6 +41,7 @@ function App() {
                 id="max-price"
                 min="0.5"
                 max="9"
+                value={max}
                 step="0.25"
                 onChange={(e) => setMax(e.target.value)}
               />
@@ -50,14 +52,16 @@ function App() {
       <section className="dishes">
         <h2>Dishes</h2>
         <ul className="grid">
-          {dishes.map((dish) => (
-            <li className="card" key={dish.id}>
-              <h2>{dish.name}</h2>
-              <p>{dish.description}</p>
-              <p>£{dish.price.toFixed(2)}</p>
-            </li>
-          ))}
-          )
+          {dishes
+            .sort((a, b) => a.price - b.price)
+            .filter((dish) => dish.price >= min && dish.price <= max)
+            .map((dish) => (
+              <li className="card" key={dish.id}>
+                <h2>{dish.name}</h2>
+                <p>{dish.description}</p>
+                <p>£{dish.price.toFixed(2)}</p>
+              </li>
+            ))}
         </ul>
       </section>
     </main>
