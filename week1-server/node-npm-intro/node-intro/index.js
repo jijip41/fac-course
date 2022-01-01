@@ -1,4 +1,5 @@
-const func = require('./add');
+// const func = require('./add');
+const { add, add2 } = require('./add');
 
-console.log(func.add(4, 6));
-console.log(func.add2(5, 7));
+console.log(add(4, 6));
+console.log(add2(5, 7));
