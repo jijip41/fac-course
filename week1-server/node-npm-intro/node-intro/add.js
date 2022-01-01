@@ -1,5 +1,11 @@
-function add(a, b) {
+const add = (a, b) => {
   return a + b;
-}
+};
 
-console.log(add(1234, 4321));
+const add2 = (a, b) => {
+  return a + b;
+};
+module.exports = {
+  add: add,
+  add2: add2,
+};
