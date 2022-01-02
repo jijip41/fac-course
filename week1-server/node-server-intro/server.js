@@ -1,12 +1,24 @@
 const express = require('express');
 const server = express();
 const staticHandler = express.static('public');
+const bodyParser = express.urlencoded();
+
 server.use(staticHandler);
 
 function logger(request, response, next) {
   console.log(request.method + ' ' + request.url);
   next();
 }
+
+// server.post('/submit', (request, response) => {
+//   console.log('posted');
+//   response.send('thanks for submitting');
+// });
+
+server.post('/submit', bodyParser, (request, response) => {
+  console.log(request.body);
+  response.send('thanks for submitting');
+});
 
 server.get('/', logger, (request, response) => {
   const time = new Date().toLocaleTimeString();
