@@ -21,6 +21,10 @@ server.get('/users/:name', (request, response) => {
   response.send(`<h1>Hello ${name}</h1>`);
 });
 
+server.use((request, response) => {
+  response.status(404).send('Not found');
+});
+
 const PORT = 3000;
 
 server.listen(PORT, () => {
