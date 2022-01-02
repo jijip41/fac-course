@@ -1,7 +1,14 @@
 const express = require('express');
 const server = express();
+const staticHandler = express.static('public');
+server.use(staticHandler);
 
-server.get('/', (request, response) => {
+function logger(request, response, next) {
+  console.log(request.method + ' ' + request.url);
+  next();
+}
+
+server.get('/', logger, (request, response) => {
   const time = new Date().toLocaleTimeString();
   response.set({
     'x-fake-header': 'my value',
