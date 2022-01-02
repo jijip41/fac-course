@@ -2,7 +2,11 @@ const express = require('express');
 const server = express();
 
 server.get('/', (request, response) => {
-  response.status(404).send('Hello');
+  response.set({
+    'x-fake-header': 'my value',
+    'x-another-header': 'another value',
+  });
+  response.status(200).send('Hello');
 });
 
 const PORT = 3000;
