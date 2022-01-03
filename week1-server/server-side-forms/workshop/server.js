@@ -5,7 +5,11 @@ const dogs = require('./dogs.js');
 const server = express();
 
 server.get('/', (request, response) => {
-  response.send('<ul>hello</ul>');
+  let list = '';
+  for (const item of Object.values(dogs)) {
+    list += `<li>${item.name}</li>`;
+  }
+  response.send(`<ul>${list}</ul>`);
 });
 
 const PORT = 3333;
