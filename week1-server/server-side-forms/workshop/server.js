@@ -9,7 +9,19 @@ server.get('/', (request, response) => {
   for (const item of Object.values(dogs)) {
     list += `<li>${item.name}</li>`;
   }
-  response.send(`<ul>${list}</ul>`);
+  const html = `
+  <!doctype html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Dogs!</title>
+    </head>
+    <body>
+      <ul>${list}</ul>
+    </body>
+  </html>
+  `;
+  response.send(html);
 });
 
 const PORT = 3333;
