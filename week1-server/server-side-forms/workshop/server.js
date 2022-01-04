@@ -5,9 +5,14 @@ const dogs = require('./dogs.js');
 const server = express();
 
 server.get('/', (request, response) => {
+  const search = request.query.search || '';
   let list = '';
-  for (const item of Object.values(dogs)) {
-    list += `<li>${item.name}</li>`;
+  for (const dog of Object.values(dogs)) {
+    const match = dog.name.toLowerCase().includes(search.toLowerCase());
+    // if we don't have a search submission we show all dogs
+    if (match || !search) {
+      list += `<li>${dog.name}</li>`;
+    }
   }
   const html = `
   <!doctype html>
@@ -17,11 +22,17 @@ server.get('/', (request, response) => {
       <title>Dogs!</title>
     </head>
     <body>
+      <h1>Dogs!</h1>
+      <form>
+        <label id="search">Search dogs</label>
+        <input id="search" type="search" name="search" placeholder="E.g. rover">
+        <button>Search</button>
+      </form>
       <ul>${list}</ul>
     </body>
   </html>
   `;
-  response.send(html);
+  response.end(html);
 });
 
 const PORT = 3333;
